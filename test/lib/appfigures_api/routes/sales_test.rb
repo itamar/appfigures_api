@@ -19,6 +19,10 @@ describe AppfiguresApi::Sales do
         subject.alltime_totals('products', [400653]).size == 1
       end
 
+      it 'returns all time sales by country' do
+        subject.report_by_country({:products => 400653})
+      end
+
     end
   end 
 end

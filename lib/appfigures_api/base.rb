@@ -6,8 +6,8 @@ module AppfiguresApi
     include HTTParty
     base_uri "https://api.appfigures.com/v2"
     # debug_output $stderr
-    basic_auth AppfiguresApi.config.username, AppfiguresApi.config.password
-    default_params :api_key => AppfiguresApi.config.app_key
+    # basic_auth AppfiguresApi.config.username, AppfiguresApi.config.password
+    # default_params :api_key => AppfiguresApi.config.app_key
     format :json
 
     # TODO: move to config file
