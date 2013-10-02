@@ -8,13 +8,13 @@ describe AppfiguresApi::Sales do
 
     describe ".totals" do
       before do
-        @response = subject.totals('products', [400653])
+        @response = subject.totals('products')
       end
       it "success" do
-        @response.success?
+        @response.success?.must_be_same_as true
       end
       it 'returns as a JSON' do
-        @response.header['Content-Type'] == 'application/json'
+        @response.header['Content-Type'].must_include 'application/json'
       end
     end
 
@@ -23,10 +23,10 @@ describe AppfiguresApi::Sales do
         @response = subject.report_by_product("2013-09-01", "2013-09-30")
       end
       it "success" do
-        @response.success?
+        @response.success?.must_be_same_as true
       end
       it "returns sales by product" do
-        @respobse.kind_of?(Hash)
+        @response.must_be_kind_of(Hash)
       end
     end
 
@@ -35,34 +35,34 @@ describe AppfiguresApi::Sales do
         @response = subject.report_by_country({:products => "214416092"})
       end
       it "success" do
-        @response.success?
+        @response.success?.must_be_same_as true
       end
       it 'returns all time sales by country' do
-        @response.has_key?('US')
+        @response['US'].must_be_kind_of(Hash)
       end
     end
 
     describe ".report_by_date" do
       before do
-        @response = subject.report_by_date()
+        @response = subject.report_by_date
       end
       it "success" do
-        @response.success?
+        @response.success?.must_be_same_as true
       end
       it 'returns all time sales by date' do
-        @respobse.kind_of?(Hash)
+        @response.must_be_kind_of(Hash)
       end
     end
 
     describe ".report_by_region" do
       before do
-        @response = subject.report_by_region()
+        @response = subject.report_by_region
       end
       it "success" do
-        @response.success?
+        @response.success?.must_be_same_as true
       end
       it 'returns all time sales by region' do
-        @response.has_key?('Australia')
+        @response['Australia'].must_be_kind_of(Hash)
       end
     end
   end 
