@@ -5,7 +5,6 @@ module AppfiguresApi
     yield @config ||= AppfiguresApi::Configuration.new
   end
 
-  # Global settings for Kaminari
   def self.config
     @config
   end
@@ -15,16 +14,18 @@ module AppfiguresApi
     config_accessor :username
     config_accessor :password
     config_accessor :app_key
+    config_accessor :base_uri
 
     def param_name
       config.param_name.respond_to?(:call) ? config.param_name.call : config.param_name
     end
   end
 
-  # this is ugly. why can't we pass the default value to config_accessor...?
+  # TODO: set the default value in config_accessor
   configure do |config|
     config.username = ''
     config.password = ''
     config.app_key  = ''
+    config.base_uri = 'https://api.appfigures.com/v2'
   end
 end
